@@ -11,7 +11,6 @@ dependencies = {
   "dkjson ~> 2.8",
   "inspect ~> 3.1.3",
   "lapis ~> 1.16.0",
-  "libcidr-ffi ~> 1.0.0",
   "lua-resty-http ~> 0.17.2",
   "lua-resty-mail ~> 1.1.0",
   "lua-resty-mlcache ~> 2.7.0",

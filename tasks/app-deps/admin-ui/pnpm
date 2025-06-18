@@ -15,7 +15,7 @@ cd _persist
 # directory).
 cp "$SOURCE_DIR/src/api-umbrella/admin-ui/package.json" ./
 cp "$SOURCE_DIR/src/api-umbrella/admin-ui/pnpm-lock.yaml" ./
-PATH="$DEV_PATH" pnpm install --frozen-lockfile
+PATH="$DEV_PATH" pnpm install --force
 
 # Remove some unnecessary and large files that are shipped in a couple of the
 # Ember npm packages (I think usually by accident). This just helps slim down

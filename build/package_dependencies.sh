@@ -31,6 +31,11 @@ if [[ "$ID_NORMALIZED" == "rhel" ]]; then
     curl
     gzip
 
+    # ngx_http_geoip2_module
+    libmaxminddb
+
+    # libcidr-dev does not exist for CentOS
+
     # TrafficServer
     libxml2
 
@@ -92,6 +97,14 @@ if [[ "$ID_NORMALIZED" == "rhel" ]]; then
     # For tests and building static site.
     ruby-devel
     rubygem-bundler
+
+    # ngx_http_geoip2_module
+    libmaxminddb-devel
+
+    # Fluent Bit
+    bison
+    cmake3
+    flex
   )
   test_runtime_dependencies=(
     unbound

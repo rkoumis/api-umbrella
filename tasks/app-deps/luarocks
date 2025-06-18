@@ -12,6 +12,7 @@ cp "$SOURCE_DIR/src/luarocks.lock" ./
 rm -rf "$APP_VENDOR_LUA_DIR"
 
 extra_args=(
+  "--verbose "
   "--only-deps"
 )
 

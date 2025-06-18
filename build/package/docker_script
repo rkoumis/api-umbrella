@@ -8,6 +8,11 @@ source_dir="$(dirname "$(dirname "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$source_dir/tasks/helpers/detect_os_release.sh"
 detect_os_release
 if [[ "$ID_NORMALIZED" == "rhel" ]]; then
+  if [[ "$ID" == "centos" ]]; then
+      sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo
+      sed -i s/^#.*baseurl=http/baseurl=https/g /etc/yum.repos.d/*.repo
+      sed -i s/^mirrorlist=http/#mirrorlist=https/g /etc/yum.repos.d/*.repo
+  fi
   yum -y install git rsync
 elif [[ "$ID_NORMALIZED" == "debian" ]]; then
   apt-get update

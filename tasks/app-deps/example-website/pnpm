@@ -15,6 +15,6 @@ cd _persist
 # directory).
 cp "$SOURCE_DIR/src/api-umbrella/example-website/package.json" ./
 cp "$SOURCE_DIR/src/api-umbrella/example-website/pnpm-lock.yaml" ./
-PATH="$DEV_PATH" pnpm install --frozen-lockfile
+PATH="$DEV_PATH" pnpm install --force
 
 stamp
