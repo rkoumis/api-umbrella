@@ -140,20 +140,19 @@ if [[ "$ID_NORMALIZED" == "rhel" ]]; then
       centos-release-scl
       devtoolset-7
     )
-  else
-    core_runtime_dependencies+=(
-      # lua-icu-date-ffi
-      libicu-devel
-
-      # lua-psl
-      libpsl
-    )
-
-    core_build_dependencies+=(
-      # lua-psl
-      libpsl-devel
-    )
   fi
+  core_runtime_dependencies+=(
+    # lua-icu-date-ffi
+    libicu-devel
+
+    # lua-psl
+    libpsl
+  )
+
+  core_build_dependencies+=(
+    # lua-psl
+    libpsl-devel
+  )
 elif [[ "$ID_NORMALIZED" == "debian" ]]; then
   libffi_version=8
   libldap_version="2.5-0"
