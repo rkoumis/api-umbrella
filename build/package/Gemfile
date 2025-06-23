@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+# childprocess needs rake to build. Use an old rake version,
+# because new rake needs new Ruby
+gem "rake", "~> 0.9.2.2"
 # Pin to 1.10 due to xz compression being broken in 1.11.0:
 # https://github.com/jordansissel/fpm/issues/1612
 gem "fpm", "~> 1.10.2"
