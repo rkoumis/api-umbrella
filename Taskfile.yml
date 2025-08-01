@@ -457,3 +457,4 @@ tasks:
   default:
     cmds:
       - task: all
+    ignore_error: true

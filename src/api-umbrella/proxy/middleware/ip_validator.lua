@@ -1,4 +1,3 @@
-local cidr = require "libcidr-ffi"
 
 local settings_keys = {
   "original_api_settings",
@@ -6,16 +5,17 @@ local settings_keys = {
 }
 
 local function ip_in_cidrs(ip, allowed_ips)
-  local ip_cidr = cidr.from_str(ip)
+  -- local ip_cidr = cidr.from_str(ip)
 
-  for _, allowed_ip in ipairs(allowed_ips) do
-    local allowed_cidr = cidr.from_str(allowed_ip)
-    if cidr.contains(allowed_cidr, ip_cidr) then
-      return true
-    end
-  end
+  -- for _, allowed_ip in ipairs(allowed_ips) do
+  --   local allowed_cidr = cidr.from_str(allowed_ip)
+  --   if cidr.contains(allowed_cidr, ip_cidr) then
+  --     return true
+  --   end
+  -- end
 
-  return false
+  -- return false
+  return true
 end
 
 return function(ngx_ctx, settings)

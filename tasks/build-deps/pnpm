@@ -4,12 +4,22 @@ pnpm_version="10.12.1"
 
 set -e -u -x
 source ./tasks/helpers.sh
+source ./tasks/helpers/detect_os_release.sh
+
+detect_os_release
+if [[ "$ID" == "centos" ]]; then
+  # On CentOS 7, with NodeJS 16, we have to go back to pnpm version 8
+  pnpm_version="8.15.9"
+fi
 
 env
 PATH="$DEV_PATH" PREFIX="$DEV_INSTALL_PREFIX" npm install -g --force "pnpm@${pnpm_version}"
 
 mkdir -p ~/.config/pnpm
 echo "update-notifier=false" > ~/.config/pnpm/rc
+
+# Set PNPM_HOME if not set already.
+PNPM_HOME=${PNPM_HOME:-/usr/local/pnpm}
 
 # Workaround for PNPM_HOME not affecting things with some of our
 # development volume mounts: https://github.com/pnpm/pnpm/issues/7050

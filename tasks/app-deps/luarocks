@@ -55,7 +55,7 @@ luarocks_install "./api-umbrella-git-1.rockspec" "git-1" "${extra_args[@]}"
   extract_download "$lua_icu_date_ffi_version.tar.gz"
 
   cd "lua-icu-date-ffi-$lua_icu_date_ffi_version"
-  luarocks_install "icu-date-ffi-git-1.rockspec" "$lua_icu_date_ffi_version"
+  luarocks_install "icu-date-ffi-git-1.rockspec" "$lua_icu_date_ffi_version" "${extra_args[@]}"
 )
 
 # lua-resty-logger-socket

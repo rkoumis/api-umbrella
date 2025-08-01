@@ -15,7 +15,13 @@ fi
 detect_os_release
 if [[ "$ID_NORMALIZED" == "rhel" && "$VERSION_ID" == "7" ]]; then
   # Dependencies for GCC 7+ for compiling TrafficServer (C++17 required).
-  yum -y install centos-release-scl
+  # epel-release repo is needed for libzstd-devel
+  yum -y install centos-release-scl epel-release
+  if [[ "$ID" == "centos" ]]; then
+      sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/*.repo
+      sed -i s/^#.*baseurl=http/baseurl=https/g /etc/yum.repos.d/*.repo
+      sed -i s/^mirrorlist=http/#mirrorlist=https/g /etc/yum.repos.d/*.repo
+  fi
 
   yum -y install "${install_dependencies[@]}"
   # Ensure the packages got installed, since yum's exit code isn't always

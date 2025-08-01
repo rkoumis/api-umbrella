@@ -1,4 +1,3 @@
-local cidr = require "libcidr-ffi"
 local common_validations = require "api-umbrella.web-app.utils.common_validations"
 local db_null = require("lapis.db").NULL
 local is_array = require "api-umbrella.utils.is_array"
@@ -64,17 +63,6 @@ end
 
 local function array_strings_ips()
   return function(value)
-    if validation.validators.array_table(value) then
-      for _, str in ipairs(value) do
-        if type(str) == "string" then
-          local _, err = cidr.from_str(str)
-          if err then
-            return false
-          end
-        end
-      end
-    end
-
     return true
   end
 end

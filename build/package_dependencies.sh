@@ -31,6 +31,11 @@ if [[ "$ID_NORMALIZED" == "rhel" ]]; then
     curl
     gzip
 
+    # ngx_http_geoip2_module
+    libmaxminddb
+
+    # libcidr-dev does not exist for CentOS
+
     # TrafficServer
     libxml2
 
@@ -92,6 +97,14 @@ if [[ "$ID_NORMALIZED" == "rhel" ]]; then
     # For tests and building static site.
     ruby-devel
     rubygem-bundler
+
+    # ngx_http_geoip2_module
+    libmaxminddb-devel
+
+    # Fluent Bit
+    bison
+    cmake3
+    flex
   )
   test_runtime_dependencies=(
     unbound
@@ -127,20 +140,19 @@ if [[ "$ID_NORMALIZED" == "rhel" ]]; then
       centos-release-scl
       devtoolset-7
     )
-  else
-    core_runtime_dependencies+=(
-      # lua-icu-date-ffi
-      libicu-devel
-
-      # lua-psl
-      libpsl
-    )
-
-    core_build_dependencies+=(
-      # lua-psl
-      libpsl-devel
-    )
   fi
+  core_runtime_dependencies+=(
+    # lua-icu-date-ffi
+    libicu-devel
+
+    # lua-psl
+    libpsl
+  )
+
+  core_build_dependencies+=(
+    # lua-psl
+    libpsl-devel
+  )
 elif [[ "$ID_NORMALIZED" == "debian" ]]; then
   libffi_version=8
   libldap_version="2.5-0"

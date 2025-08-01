@@ -9,6 +9,14 @@ openresty_hash="74f076f7e364b2a99a6c5f9bb531c27610c78985abe956b442b192a2295f7548
 
 set -e -u -x
 source ./tasks/helpers.sh
+source ./tasks/helpers/detect_os_release.sh
+
+detect_os_release
+if [[ "$ID" == "centos" ]]; then
+  # CentOS 7 ? openresty can only go up to 1.25
+  openresty_version="1.25.3.2"
+  openresty_hash="2d564022b06e33b45f7e5cfaf1e5dc571d38d61803af9fa2754dfff353c28d9c"
+fi
 
 task_working_dir
 
@@ -22,7 +30,7 @@ download "https://github.com/fffonion/lua-resty-openssl-aux-module/archive/refs/
 extract_download "$lua_resty_openssl_aux_module_version.tar.gz"
 
 cd "openresty-$openresty_version"
-patch -p1 < "$SOURCE_DIR/build/patches/openresty-cli.patch"
+patch -p1 --fuzz=3 < "$SOURCE_DIR/build/patches/openresty-cli.patch"
 
 ./configure \
   --prefix="$INSTALL_PREFIX_EMBEDDED/openresty" \
